@@ -16,7 +16,7 @@ const get = () => {
 
 const post = () => {
     const data = {
-        title: 'foo',
+        title: 'Lara',
         body: 'bar',
         userId: 1
     };
@@ -25,11 +25,22 @@ const post = () => {
 }
 
 const put = () => {
-    console.log('put');
+    const data = {
+        id: 1,
+        title: 'Lara',
+        body: 'bar',
+        userId: 1
+    };
+    axios.put('https://jsonplaceholder.typicode.com/posts/1', data)
+        .then((response) => renderOutput(response))
 }
 
 const patch = () => {
-    console.log('patch');
+    const data = {
+        title: 'LaraVue',
+    };
+    axios.put('https://jsonplaceholder.typicode.com/posts/1', data)
+        .then((response) => renderOutput(response))
 }
 
 const del = () => {
