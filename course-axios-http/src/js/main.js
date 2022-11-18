@@ -3,6 +3,23 @@ const dataEl = document.getElementById('data');
 const headersEl = document.getElementById('headers');
 const configEl = document.getElementById('config');
 
+axios.interceptors.request.use(function(config) {
+    console.log('intercepting here')
+    config.headers.common.Authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+    return config
+}, function(error) {
+    console.log(error)
+    return Promise.reject(error);
+})
+
+axios.interceptors.response.use(function (response) {
+    console.log('sucess')
+    return response;
+  }, function (error) {
+    console.log(error.response)
+    return Promise.reject(error);
+  });
+
 const get = () => {
     const config = {
         params: {
