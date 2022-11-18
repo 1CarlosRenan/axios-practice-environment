@@ -3,6 +3,24 @@ const dataEl = document.getElementById('data');
 const headersEl = document.getElementById('headers');
 const configEl = document.getElementById('config');
 
+const newAxios = axios.create({
+    baseURL: 'https://api.example.com',
+    headers: {
+        common: {
+            Authorization: 'new axios'
+        }
+    }
+});
+
+newAxios.interceptors.request.use(function(config) {
+    console.log('intercepting here')
+    config.headers.common.Authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+    return config
+}, function(error) {
+    console.log(error)
+    return Promise.reject(error);
+})
+
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com'
 
 axios.interceptors.request.use(function(config) {
