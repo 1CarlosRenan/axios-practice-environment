@@ -11,7 +11,6 @@ const get = () => {
     };
     axios.get('https://jsonplaceholder.typicode.com/posts', config)
         .then((response) => renderOutput(response))
-    console.log('get');
 }
 
 const post = () => {
@@ -59,7 +58,17 @@ const multiple = () => {
 }
 
 const transform = () => {
-    console.log('transform');
+    const config = {
+        params: {
+            _limit: 5
+        },
+        transformResponse: [function (data) {
+            // Do whatever you want to transform the data
+            return data;
+        }],
+    };
+    axios.get('https://jsonplaceholder.typicode.com/posts', config)
+        .then((response) => renderOutput(response))
 }
 
 const errorHandling = () => {
